@@ -22,15 +22,16 @@ RUN pip install xtcocotools
 
 # Install MMEngine and MMCV
 RUN pip install openmim
-RUN mim install mmengine "mmcv>=2.0.0"
+RUN mim install mmengine "mmcv==2.1.0" "mmdet==3.3.0"
 # Install MMPose
 RUN conda clean --all
-COPY ./requirements/build.txt /mmpose/requirements/build.txt
+COPY ./requirements.txt /mmpose/requirements.txt
+COPY ./requirements /mmpose/requirements
 COPY ./setup.cfg /mmpose/setup.cfg
 COPY ./setup.py /mmpose/setup.py
 COPY ./mmpose/version.py /mmpose/mmpose/version.py
 COPY ./README.md /mmpose/README.md
 WORKDIR /mmpose
 ENV FORCE_CUDA="1"
-RUN pip install -r requirements/build.txt
+RUN pip install -r requirements.txt
 RUN pip install --no-cache-dir -e .
