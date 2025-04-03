@@ -8,3 +8,4 @@ services:
       - .:/mmpose
     working_dir: /mmpose
     tty: true
+    runtime: nvidia
